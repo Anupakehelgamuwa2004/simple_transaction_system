@@ -1,0 +1,23 @@
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.report-table th,
+.report-table td {
+  padding: 0.45rem 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+.report-table tbody tr:nth-child(odd) {
+  background: #f9fbfc;
+}
+
+.report-table th {
+  background: #f1f5f9;
+  font-weight: 600;
+  text-transform: capitalize;
+}

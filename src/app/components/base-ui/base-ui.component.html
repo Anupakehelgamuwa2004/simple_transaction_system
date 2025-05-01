@@ -1,44 +1,82 @@
-<h2>Add Transaction</h2>
-<form [formGroup]="txForm" (ngSubmit)="save()">
-  <label>Ref: <input formControlName="transactionRef"></label><br>
-  <label>Start: <input type="date" formControlName="startDate"></label><br>
-  <label>Maturity: <input type="date" formControlName="maturityDate"></label><br>
-  <label>Amount: <input type="number" step="0.01" formControlName="amount"></label><br>
-  <label>Customer: <input formControlName="customerName"></label><br>
-  <label>NIC: <input formControlName="customerNic"></label><br>
-  <button type="submit" [disabled]="txForm.invalid">Save</button>
-</form>
+<div class="container">
 
-<hr>
+  <!-- ─── Add Transaction ──────────────────────────── -->
+  <section class="card">
+    <h2 class="card__title">Add Transaction</h2>
 
-<h2>Reports</h2>
+    <form [formGroup]="txForm" (ngSubmit)="save()" class="grid-form">
+      <label>
+        <span>Reference&nbsp;#</span>
+        <input formControlName="transactionRef" placeholder="TX-0001" />
+      </label>
 
-<h3>Outstanding as of</h3>
-<input #asOf type="date">
-<button (click)="loadOutstanding(asOf.value)">Load</button>
-<table *ngIf="outstandingRows.length">
-  <tr><th>Ref</th><th>Amount</th><th>Maturity</th></tr>
-  <tr *ngFor="let t of outstandingRows">
-    <td>{{t.transactionRef}}</td><td>{{t.amount}}</td><td>{{t.maturityDate}}</td>
-  </tr>
-</table>
+      <label>
+        <span>Start&nbsp;Date</span>
+        <input type="date" formControlName="startDate" />
+      </label>
 
-<h3>Customer outstanding</h3>
-<input #nic placeholder="NIC">
-<button (click)="loadCustomer(nic.value)">Load</button>
-<table *ngIf="customerRows.length">
-  <tr><th>Ref</th><th>Amount</th><th>Maturity</th></tr>
-  <tr *ngFor="let t of customerRows">
-    <td>{{t.transactionRef}}</td><td>{{t.amount}}</td><td>{{t.maturityDate}}</td>
-  </tr>
-</table>
+      <label>
+        <span>Maturity&nbsp;Date</span>
+        <input type="date" formControlName="maturityDate" />
+      </label>
 
-<h3>By maturity date</h3>
-<input #mat type="date">
-<button (click)="loadMaturity(mat.value)">Load</button>
-<table *ngIf="maturityRows.length">
-  <tr><th>Ref</th><th>Amount</th><th>Customer</th></tr>
-  <tr *ngFor="let t of maturityRows">
-    <td>{{t.transactionRef}}</td><td>{{t.amount}}</td><td>{{t.customerName}}</td>
-  </tr>
-</table>
+      <label>
+        <span>Amount&nbsp;(LKR)</span>
+        <input type="number" step="0.01" formControlName="amount" />
+      </label>
+
+      <label>
+        <span>Customer&nbsp;Name</span>
+        <input formControlName="customerName" placeholder="Ashan Perera" />
+      </label>
+
+      <label>
+        <span>NIC</span>
+        <input formControlName="customerNic" placeholder="200400400302" />
+      </label>
+
+      <div class="actions">
+        <button type="submit" [disabled]="txForm.invalid">Save</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- ─── Reports ───────────────────────────────────── -->
+  <section class="card">
+    <h2 class="card__title">Reports</h2>
+
+    <!-- Outstanding -->
+    <div class="report-header">
+      <input #asOf type="date" />
+      <button class="small" (click)="loadOutstanding(asOf.value)">Outstanding as of</button>
+    </div>
+    <app-report-table
+      *ngIf="outstandingRows.length"
+      [rows]="outstandingRows"
+      [columns]="['transactionRef', 'amount', 'maturityDate']">
+    </app-report-table>
+
+    <!-- Customer -->
+    <div class="report-header">
+      <input #nic placeholder="NIC" />
+      <button class="small" (click)="loadCustomer(nic.value)">Customer outstanding</button>
+    </div>
+    <app-report-table
+      *ngIf="customerRows.length"
+      [rows]="customerRows"
+      [columns]="['transactionRef', 'amount', 'maturityDate']">
+    </app-report-table>
+
+    <!-- Maturity -->
+    <div class="report-header">
+      <input #mat type="date" />
+      <button class="small" (click)="loadMaturity(mat.value)">By maturity date</button>
+    </div>
+    <app-report-table
+      *ngIf="maturityRows.length"
+      [rows]="maturityRows"
+      [columns]="['transactionRef', 'amount', 'customerName']">
+    </app-report-table>
+  </section>
+
+</div>

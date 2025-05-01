@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TransactionService } from '../../services/transaction.service';
 import { Transaction } from '../../model/transaction.model';
+import { ReportTableComponent } from "../report-table/report-table.component";
 
 @Component({
   selector: 'app-base-ui',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ReportTableComponent],
   templateUrl: './base-ui.component.html',
   styleUrls: ['./base-ui.component.css']
 })

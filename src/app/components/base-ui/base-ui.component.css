@@ -1,0 +1,111 @@
+/* --- Layout shell ------------------------------------------------ */
+.container {
+  max-width: 920px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* --- Card -------------------------------------------------------- */
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem 2rem;
+}
+
+.card__title {
+  margin: 0 0 1.25rem 0;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* --- Form grid --------------------------------------------------- */
+.grid-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem 1.5rem;
+}
+
+.grid-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.87rem;
+  color: #475569;
+}
+
+.grid-form input {
+  margin-top: 0.35rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: border-color 0.15s;
+}
+
+.grid-form input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px #2563eb33;
+}
+
+/* Action row */
+.actions {
+  grid-column: 1 / -1;               /* stretch full row */
+  text-align: right;
+  margin-top: 0.5rem;
+}
+
+button {
+  background: #2563eb;
+  color: #fff;
+  padding: 0.55rem 1.3rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button.small {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+button:not(:disabled):hover {
+  background: #1d4ed8;
+}
+
+/* --- Report header (input + button on one row) ------------------- */
+.report-header {
+  margin: 1rem 0 0.35rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.report-header input {
+  flex: 1;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+/* --- Responsive tweak ------------------------------------------- */
+@media (max-width: 640px) {
+  .grid-form {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    text-align: stretch;
+  }
+}
